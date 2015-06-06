@@ -1,0 +1,13 @@
+DROP TABLE stories CASCADE;
+DROP TABLE entries CASCADE;
+
+CREATE TABLE stories(
+  id SERIAL PRIMARY KEY,
+  gif_url VARCHAR(2550)
+);
+
+CREATE TABLE entries(
+  id SERIAL PRIMARY KEY,
+  entry VARCHAR(3000),
+  story_id INTEGER
+);

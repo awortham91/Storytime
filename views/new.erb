@@ -1,0 +1,14 @@
+
+
+<h1>Add to the story</h1>
+
+<img src="<%= image %>">
+
+<form action="/index/new" method="post">
+  <label for='story_bit' >Start the Story here:</label><br/>
+  <textarea type='textarea' name='story_bit' id='story_bit' required></textarea>
+  <input type="hidden" name="image" value="<%= image %>">
+  <input type='submit' name='Submit' value='Submit' />
+</form>
+
+<a href="/index">"Back to the other stories"</a>

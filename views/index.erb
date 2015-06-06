@@ -1,0 +1,10 @@
+
+<h1>Stories</h1>
+
+<a href="/index/new">Start a story:</a>
+
+<p>continue a story:</p>
+
+<% continues.each do |gif| %>
+<a href="/story/<%= gif['id'] %>"><img src="<%= gif['gif_url'] %>"></a>
+<% end %>

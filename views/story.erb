@@ -1,0 +1,11 @@
+
+<h1>Add to the story:</h1>
+
+<img src="<%= info['gif_url'] %>">
+<%= info['entry'] %>
+
+<form action="/story/:story_id/full" method="post">
+  <label for='story_bit' >Continue the Story here:</label><br/>
+  <textarea type='textarea' name='story_bit' id='story_bit' required></textarea>
+  <input type='submit' name='Submit' value='Submit' />
+</form>

@@ -40,17 +40,20 @@ redirect "index"
 end
 
 get "/story/:story_id" do
-  info = db_connection { |conn| conn.exec("SELECT stories.gif_url, entries.entry FROM stories
-    JOIN entries on stories.id = entries.story_id
-    WHERE entries.story_id = #{params['story_id']}") }
-
-  erb :story, locals: {info: info.to_a[0]}
+  info = db_connection { |conn| conn.exec("SELECT stories.gif_url, stories.id, entries.entry FROM entries
+    FULL OUTER JOIN stories on entries.story_id = stories.id
+    WHERE #{params['story_id']} = entries.story_id") }
+  erb :story, locals: { info: info.to_a }
 end
 
 post "/story/:story_id" do
-
+  db_connection { |conn| conn.exec_params("INSERT into entries(story_id, entry) VALUES ($1, $2)", [params['id'], params['story_bit']]) }
+  redirect "/story/#{params['id']}/full"
 end
 
 get "/story/:story_id/full" do
-
+  info = db_connection { |conn| conn.exec("SELECT stories.gif_url, stories.id, entries.entry FROM stories
+    JOIN entries on stories.id = entries.story_id
+    WHERE entries.story_id = #{params['story_id']}") }
+  erb :full, locals: { info: info.to_a }
 end

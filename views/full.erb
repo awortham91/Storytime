@@ -1,1 +1,8 @@
 <h1>Here is the full story!</h1>
+
+<img src="<%= info[0]['gif_url'] %>">
+<% info.each do |entries| %>
+<p><%= entries['entry'] %></p>
+<% end %>
+
+<a href="/index">BACK TO STORIES</a>

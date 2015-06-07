@@ -1,10 +1,20 @@
+<div class="row">
+  <div class="small-10 medium-9 large-8 small-centered columns text-center">
+    <h4>Click a gif below to continue a story.
+    <br>
+    Or start a new story <a href="/index/new">here</a>!</h4>
+    <br>
+    <br>
+  </div>
+</div>
 
-<h1>Stories</h1>
+<div class="row">
+  <div class="small-10 medium-9 large-8 small-centered columns">
+    <% continues.each do |gif| %>
+    <a href="/story/<%= gif['id'] %>"><img src="<%= gif['gif_url'] %>" width=700></a>
+    <% end %>
+  </div>
+</div>
 
-<a href="/index/new">Start a story:</a>
-
-<p>continue a story:</p>
-
-<% continues.each do |gif| %>
-<a href="/story/<%= gif['id'] %>"><img src="<%= gif['gif_url'] %>"></a>
-<% end %>
+<br>
+<h5 class="text-center subheader"><small>Built by <a href="https://github.com/awortham91">Andrew Wortham</a> and <a href="https://github.com/thomascchen">Thomas Chen</a> 2015</small></h5>

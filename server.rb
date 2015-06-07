@@ -17,17 +17,13 @@ get "/" do
 end
 
 get "/index" do
-  continues = db_connection { |conn| conn.exec("SELECT gif_url, id FROM stories") }
+  continues = db_connection { |conn| conn.exec("SELECT gif_url, id FROM stories") }.to_a.reverse
   erb :index, locals: { continues: continues}
 end
 
-
-
 get "/index/new" do
-
   giphy = HTTParty.get("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC")
   image = giphy['data']['image_url']
-
   erb :new, locals: { image: image }
 end
 

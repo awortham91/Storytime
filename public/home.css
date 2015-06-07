@@ -1,31 +1,11 @@
-body {
-  /* Use a "Matrix"-style color scheme. */
-  background-color: black;
-  color: #00ff00;
-
-  font-family: monospace;
-  font-size: 1.5em;
+body, h1, h2, h3, h4 {
+  font-family: 'Open Sans', sans-serif;
 }
 
-ul {
-  /* Wrap the list in a green box. */
-  width: 300px;
-  border: 1px solid #00ff00;
-}
+/* p {
+  text-indent: 60px;
+} */
 
-li {
-  /* Add a bit more spacing between list items. */
-  padding: 5px;
-}
-
-.button {
-  font: bold 22px Arial;
-  text-decoration: none;
-  background-color: #EEEEEE;
-  color: #333333;
-  padding: 2px 6px 2px 6px;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+#last_sentence {
+  font-style: italic;
 }

@@ -1,14 +1,19 @@
+<div class="row">
+  <div class="small-10 medium-9 large-8 small-centered columns text-center">
+    <br>
+    <img src="<%= image %>" width=700>
+  <div>
+</div>
 
-
-<h1>Add to the story</h1>
-
-<img src="<%= image %>">
-
+<br>
 <form action="/index/new" method="post">
-  <label for='story_bit' >Start the Story here:</label><br/>
-  <textarea type='textarea' name='story_bit' id='story_bit' required></textarea>
+  <label for='story_bit'><h4>Start your story</h4></label><br/>
+  <textarea type='textarea' name='story_bit' id='story_bit' placeholder="Once upon a time..." required></textarea>
   <input type="hidden" name="image" value="<%= image %>">
-  <input type='submit' name='Submit' value='Submit' />
+  <input class="button expand" type='submit' name='Submit' value='Submit'/>
 </form>
 
-<a href="/index">Back to the other stories</a>
+<br>
+<a href="/index">Back to other stories</a>
+<br>
+<br>

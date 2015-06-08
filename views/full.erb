@@ -1,8 +1,21 @@
-<h1>Here is the full story!</h1>
+<div class="row">
+  <div class="small-10 medium-9 large-8 small-centered columns text-center">
+    <br>
+    <img src="<%= info[0]['gif_url'] %>" width=700>
+  <div>
+</div>
 
-<img src="<%= info[0]['gif_url'] %>">
+<br>
+<h3>The story so far</h3>
+<br>
+
+<p class="text-left">
 <% info.each do |entries| %>
-<p><%= entries['entry'] %></p>
+ <%= entries['entry'] %>
 <% end %>
+</p>
 
-<a href="/index">BACK TO STORIES</a>
+<br>
+<a href="/index">Back to other stories</a>
+<br>
+<br>

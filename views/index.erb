@@ -1,3 +1,5 @@
+<body>
+
 <div class="row">
   <div class="small-10 medium-9 large-8 small-centered columns text-center">
     <h4>Click a gif below to continue a story.
@@ -22,13 +24,15 @@
 <div class="pagination-centered">
   <ul class="pagination">
     <% if params['page'].to_i > 0 %>
-    <li class="arrow unavailable"><a href="/index?page=<%= params['page'].to_i - 1 %>">Previous Page</a></li>
+    <li class="arrow"><a href="/index?page=<%= params['page'].to_i - 1 %>"><h5>Previous Page</h5></a></li>
     <% end %>
-    <% if params['page'].to_i < (count / 8) %>
-    <li class="arrow"><a href="/index?page=<%= params['page'].to_i + 1 %>">Next Page</a></li>
+    <% if params['page'].to_i < (count / 8) && ((params['page'].to_i + 1) * 8) != count %>
+    <li class="arrow"><a href="/index?page=<%= params['page'].to_i + 1 %>"><h5>Next Page</h5></a></li>
     <% end %>
   </ul>
 </div>
 
 <br>
 <h5 class="text-center subheader"><small>Built by <a href="https://github.com/awortham91">Andrew Wortham</a> and <a href="https://github.com/thomascchen">Thomas Chen</a> 2015</small></h5>
+
+</body>

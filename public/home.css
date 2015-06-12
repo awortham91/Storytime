@@ -17,6 +17,35 @@ li {
 dl dd a{
 text-align:center;
 }
+
 section.sub-nav-section {
 display: inline-block;
+}
+
+body {
+  /* background-image: url('http://wallpaperfast.com/wp-content/uploads/2013/05/Calm-sea-breeze-notebook-background-images-Desktop-Wallpaper.jpg'); */
+  background-image: url("/images/clouds flowers.jpg");
+  background-size: cover;
+  background-attachment: fixed
+}
+
+a {
+  color: purple;
+}
+
+a:hover {
+  color: violet;
+}
+
+ul.pagination li a h5 {
+  color: purple;
+}
+
+ul.pagination li a:hover h5 {
+  color: violet;
+}
+
+.green-background {
+  background-color: tan;
+  padding: 2em;
 }

@@ -26,6 +26,7 @@ get "/index" do
     FULL OUTER JOIN stories on entries.story_id = stories.id
     GROUP BY stories.id
     HAVING count(stories.id) < 8
+    ORDER BY stories.id desc
     OFFSET #{(page.to_i) * 8} LIMIT 8") }.to_a
   erb :index, locals: { continues: continues, count: count, page: params['page'] }
 end
@@ -35,11 +36,12 @@ get "/index/completed" do
   count = db_connection { |conn| conn.exec("SELECT count(stories.id) FROM entries
     FULL OUTER JOIN stories on entries.story_id = stories.id
     GROUP BY stories.id
-    HAVING count(stories.id) > 8") }.to_a.count
+    HAVING count(stories.id) >= 8") }.to_a.count
   continues = db_connection { |conn| conn.exec("SELECT DISTINCT(stories.gif_url), stories.id, count(stories.id) FROM entries
     FULL OUTER JOIN stories on entries.story_id = stories.id
     GROUP BY stories.id
-    HAVING count(stories.id) > 8
+    HAVING count(stories.id) >= 8
+    ORDER BY stories.id desc
     OFFSET #{(page.to_i) * 8} LIMIT 8") }.to_a
   erb :completed, locals: { continues: continues, count: count, page: params['page'] }
 end

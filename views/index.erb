@@ -2,8 +2,9 @@
   <div class="small-10 medium-9 large-8 small-centered columns text-center">
     <h4>Click a gif below to continue a story.
     <br>
-    Or start a new story <a href="/index/new">here</a>!</h4>
+    Read completed stories <a href="/index/completed">here</a>!
     <br>
+    Or start a new story <a href="/index/new">here</a>!</h4>
     <br>
   </div>
 </div>
@@ -14,6 +15,19 @@
     <a href="/story/<%= gif['id'] %>"><img src="<%= gif['gif_url'] %>" width=700></a>
     <% end %>
   </div>
+</div>
+
+<br>
+<br>
+<div class="pagination-centered">
+  <ul class="pagination">
+    <% if params['page'].to_i > 0 %>
+    <li class="arrow unavailable"><a href="/index?page=<%= params['page'].to_i - 1 %>">Previous Page</a></li>
+    <% end %>
+    <% if params['page'].to_i < (count / 8) %>
+    <li class="arrow"><a href="/index?page=<%= params['page'].to_i + 1 %>">Next Page</a></li>
+    <% end %>
+  </ul>
 </div>
 
 <br>

@@ -13,12 +13,35 @@ def db_connection
 end
 
 get "/" do
-  redirect '/index'
+  redirect '/index?page=0'
 end
 
 get "/index" do
-  continues = db_connection { |conn| conn.exec("SELECT gif_url, id FROM stories") }.to_a.reverse
-  erb :index, locals: { continues: continues}
+  page = params['page']||0
+  count = db_connection { |conn| conn.exec("SELECT count(stories.id) FROM entries
+    FULL OUTER JOIN stories on entries.story_id = stories.id
+    GROUP BY stories.id
+    HAVING count(stories.id) < 8") }.to_a.count
+  continues = db_connection { |conn| conn.exec("SELECT DISTINCT(stories.gif_url), stories.id, count(stories.id) FROM entries
+    FULL OUTER JOIN stories on entries.story_id = stories.id
+    GROUP BY stories.id
+    HAVING count(stories.id) < 8
+    OFFSET #{(page.to_i) * 8} LIMIT 8") }.to_a
+  erb :index, locals: { continues: continues, count: count, page: params['page'] }
+end
+
+get "/index/completed" do
+  page = params['page']||0
+  count = db_connection { |conn| conn.exec("SELECT count(stories.id) FROM entries
+    FULL OUTER JOIN stories on entries.story_id = stories.id
+    GROUP BY stories.id
+    HAVING count(stories.id) > 8") }.to_a.count
+  continues = db_connection { |conn| conn.exec("SELECT DISTINCT(stories.gif_url), stories.id, count(stories.id) FROM entries
+    FULL OUTER JOIN stories on entries.story_id = stories.id
+    GROUP BY stories.id
+    HAVING count(stories.id) > 8
+    OFFSET #{(page.to_i) * 8} LIMIT 8") }.to_a
+  erb :completed, locals: { continues: continues, count: count, page: params['page'] }
 end
 
 get "/index/new" do
@@ -48,8 +71,14 @@ post "/story/:story_id" do
 end
 
 get "/story/:story_id/full" do
+  num_of_entries = db_connection { |conn| conn.exec("SELECT * FROM entries WHERE story_id = #{params['story_id']}") }.to_a.size
   info = db_connection { |conn| conn.exec("SELECT stories.gif_url, stories.id, entries.entry FROM stories
     JOIN entries on stories.id = entries.story_id
     WHERE entries.story_id = #{params['story_id']}") }
-  erb :full, locals: { info: info.to_a }
+ if num_of_entries >= 8
+   notify = "That's it! The story is complete!"
+ else
+   notify = "The story so far"
+ end
+ erb :full, locals: { info: info.to_a, notify: notify }
 end

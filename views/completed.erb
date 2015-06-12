@@ -5,7 +5,9 @@
     <a href="/story/<%= gif['id'] %>/full"><img src="<%= gif['gif_url'] %>" width=700></a>
     <% end %>
   </div>
-  <a href="/index">Back to other stories</a>
+
+    <a href="/index/completed">Back to other stories</a>
+
 </div>
 <div>
   <% if params['page'].to_i > 0 %>

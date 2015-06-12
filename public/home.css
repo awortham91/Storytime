@@ -30,19 +30,19 @@ body {
 }
 
 a {
-  color: orange;
+  color: purple;
 }
 
 a:hover {
-  color: brown;
+  color: violet;
 }
 
 ul.pagination li a h5 {
-  color: orange;
+  color: purple;
 }
 
 ul.pagination li a:hover h5 {
-  color: brown;
+  color: violet;
 }
 
 .green-background {
